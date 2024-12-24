@@ -5,13 +5,13 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCqiuLUNuDAHkeA1xlt1CN5o0sc4SNK7yA",
-  authDomain: "gasgstamovies.firebaseapp.com",
-  projectId: "gasgstamovies",
-  storageBucket: "gasgstamovies.firebasestorage.app",
-  messagingSenderId: "956178222832",
-  appId: "1:956178222832:web:201e8e415119befe4abc35",
-  measurementId: "G-R02HPHLGLE"
+  apiKey: "AIzaSyDspAMoxizfNuNsntDTM7Nna7go3k9GSv0",
+  authDomain: "srilinks4k-d79b0.firebaseapp.com",
+  projectId: "srilinks4k-d79b0",
+  storageBucket: "srilinks4k-d79b0.firebasestorage.app",
+  messagingSenderId: "521896668238",
+  appId: "1:521896668238:web:e4fa39320373817523e71f",
+  measurementId: "G-JDFS7KRV40"
 };
 
 // Initialize Firebase
