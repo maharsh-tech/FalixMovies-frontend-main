@@ -10,8 +10,8 @@ const firebaseConfig = {
   projectId: "srilinks4k-d79b0",
   storageBucket: "srilinks4k-d79b0.firebasestorage.app",
   messagingSenderId: "521896668238",
-  appId: "1:521896668238:web:e4fa39320373817523e71f",
-  measurementId: "G-JDFS7KRV40"
+  appId: "1:521896668238:web:7423e5baa781219423e71f",
+  measurementId: "G-SKZ6PRDH63"
 };
 
 // Initialize Firebase
