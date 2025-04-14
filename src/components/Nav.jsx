@@ -11,7 +11,7 @@ import { BiHomeAlt2, BiSolidMovie, BiStar } from "react-icons/bi";
 
 import { BsTv } from "react-icons/bs";
 import posterPlaceholder from "../assets/images/poster-placeholder.png";
-import UserInfoBtn from "./Logout";
+// import UserInfoBtn from "./Logout";
 
 export default function Nav() {
   const BASE = import.meta.env.VITE_BASE_URL; // Base Url for backend
@@ -39,7 +39,7 @@ export default function Nav() {
     }
   }, [location.pathname]);
 
-  const isLoginPage = location.pathname === "/login"; 
+  // const isLoginPage = location.pathname === "/login"; 
 
   // Query Data Fetcher
   try {
@@ -109,7 +109,7 @@ export default function Nav() {
 
   return (
     <>
-      {!isLoginPage && (
+      
         <div className="fixed flex items-center justify-between gap-3 z-20 bg-bgColor/60 backdrop-blur-md top-0 left-0 right-0 py-4 px-5 md:px-10  text-white">
           <Link
             to="/"
@@ -321,10 +321,10 @@ export default function Nav() {
               </div>
             )}
           </form>
-          <UserInfoBtn />
+          {/* <UserInfoBtn /> */}
 
         </div>
-      )}
+
     </>
   );
 }

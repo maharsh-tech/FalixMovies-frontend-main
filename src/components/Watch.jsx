@@ -3,93 +3,24 @@ import { motion, AnimatePresence } from "framer-motion";
 import Plyr from "plyr-react";
 import "plyr-react/plyr.css";
 import { useEffect, useState, useRef } from "react";
-import { db } from "../firebase";
-import { doc, setDoc, getDoc } from "firebase/firestore";
-import { v4 as uuidv4 } from "uuid";
-import { getAuth } from "firebase/auth";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import { toast } from "react-toastify"; // Import toast from react-toastify
 
 export default function WatchTrailer(props) {
   const [sources, setSources] = useState([]);
   const [poster, setPoster] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const BASE = import.meta.env.VITE_BASE_URL;
+
   const playerRef = useRef(null);
-  const API_URL = import.meta.env.VITE_API_URL;
-  const API_KEY = import.meta.env.VITE_API_KEY;
-  const TOKEN_SYSTEM = import.meta.env.VITE_TOKEN_SYSTEM;
-
-  const auth = getAuth();
-  const userId = auth.currentUser?.uid;
   const location = useLocation();
-  const fullUrl = window.location.href;
-  const url = new URL(fullUrl);
-  const domain = url.origin;
-
-  const generateToken = () => uuidv4();
-
-  const verifyTokenTimeStamp = async (userId) => {
-    try {
-      const docSnap = await getDoc(doc(db, "tokens", userId));
-
-      if (docSnap.exists()) {
-        const now = new Date();
-        const { expiresAt } = docSnap.data();
-
-        if (expiresAt) {
-          if (new Date(expiresAt) > now) return true;
-          toast.warning("Token expired, generating a new one...");
-          // console.log("Token is invalid or expired.");
-        } else {
-          toast.info("Token expired, generating a new one...");
-          // console.log("Token has no expiration date.");
-        }
-      } else {
-        toast.info("No token found, generating a new one...");
-        // console.log("No token found for user.");
-      }
-    } catch (error) {
-      console.error("Error verifying token:", error);
-    }
-    return false;
-  };
-
-  const shortenUrl = async (url) => {
-    try {
-      const { data } = await axios.get(API_URL, {
-        params: { api: API_KEY, url, format: "json" },
-      });
-      return data.shortenedUrl || url;
-    } catch (error) {
-      console.error("Error shortening URL:", error);
-      return url;
-    }
-  };
 
   useEffect(() => {
     const fetchData = async () => {
-      // Only fetch data if the popup is open
       if (props.isWatchMoviePopupOpen || props.isWatchEpisodePopupOpen) {
         try {
-          let shortUrl = null;
           let videoSources = [];
           let selectedPoster = "";
-
-          if (TOKEN_SYSTEM === "true") {
-            const isTokenValid = await verifyTokenTimeStamp(userId);
-
-            if (!isTokenValid) {
-              const token = generateToken();
-              await setDoc(doc(db, "tokens", userId), { token });
-              const tokenUrl = `${domain}/token/${token}`;
-              shortUrl = await shortenUrl(tokenUrl);
-              window.open(shortUrl, "_blank", "noopener noreferrer");
-              closeModal(); // Close the modal if the token is invalid
-              return; // Stop further execution if the token is invalid
-            }
-          }
 
           if (props.popUpType === "movie") {
             videoSources = props.id.telegram.map((q) => ({
@@ -121,7 +52,7 @@ export default function WatchTrailer(props) {
 
           setSources(videoSources);
           setPoster(selectedPoster);
-          setIsModalOpen(true); // Open modal after data is set if token is valid
+          setIsModalOpen(true);
         } catch (error) {
           console.error("Error processing data:", error);
         }
@@ -136,6 +67,7 @@ export default function WatchTrailer(props) {
     props.id,
     props.seasonNumber,
     props.episodeNumber,
+    BASE,
   ]);
 
   const closeModal = () => {
@@ -181,7 +113,6 @@ export default function WatchTrailer(props) {
           transition={{ duration: 0.3 }}
           className="fixed inset-0 z-30 w-full h-screen bg-black/90 backdrop-blur-md flex items-center justify-center"
         >
-          {/* Close Button */}
           <button
             onClick={closeModal}
             className="absolute top-5 right-5 text-white text-2xl z-50"
@@ -189,7 +120,6 @@ export default function WatchTrailer(props) {
             <AiOutlineClose />
           </button>
 
-          {/* Plyr Player */}
           <motion.div
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}

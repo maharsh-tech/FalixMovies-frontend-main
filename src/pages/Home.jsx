@@ -4,9 +4,9 @@ import axios from "axios";
 import HeroSlider from "../components/HomeHero";
 import HomeSections from "../components/HomeSections";
 import SEO from "../components/SEO";
-import { useAuth } from "../context/AuthContext";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 export default function Home() {
   const BASE = import.meta.env.VITE_BASE_URL; // Base Url for backend
   const SITENAME = import.meta.env.VITE_SITENAME;
@@ -19,75 +19,67 @@ export default function Home() {
   const [isTrendingMoviesLoading, setIsTrendingMoviesLoading] = useState(true);
   const [isTrendingTvLoading, setIsTrendingTvLoading] = useState(true);
 
-  const { isAuthenticated } = useAuth();
+  useEffect(() => {
+    setIsHeroLoading(true);
+    window.scrollTo(0, 0);
+    axios
+      .get(`${BASE}/api/movies`, {
+        params: {
+          sort_by: "rating:desc",
+          sort_by: "release_year:desc",
+          page: 1,
+          page_size: 10,
+        },
+      })
+      .then((response) => {
+        setHeroPopularMovies(response.data.movies);
+        setIsHeroLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching hero popular movies:", error);
+        setIsHeroLoading(false);
+      });
+  }, [BASE]);
 
   useEffect(() => {
-    if (isAuthenticated) {
-      setIsHeroLoading(true);
-      window.scrollTo(0, 0);
-      axios
-        .get(`${BASE}/api/movies`, {
-          params: {
-            sort_by: "rating:desc",
-            sort_by: "release_year:desc",
-            page: 1,
-            page_size: 10,
-          },
-        })
-        .then((response) => {
-          setHeroPopularMovies(response.data.movies);
-          setIsHeroLoading(false);
-        })
-        .catch((error) => {
-          console.error("Error fetching hero popular movies:", error);
-          setIsHeroLoading(false);
-        });
-    }
-  }, [isAuthenticated, BASE]);
+    setIsTrendingMoviesLoading(true);
+    axios
+      .get(`${BASE}/api/movies`, {
+        params: {
+          sort_by: "updated_on:desc",
+          page: 1,
+          page_size: 20,
+        },
+      })
+      .then((response) => {
+        setTrendingMovies(response.data.movies);
+        setIsTrendingMoviesLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching trending movies:", error);
+        setIsTrendingMoviesLoading(false);
+      });
+  }, [BASE]);
 
   useEffect(() => {
-    if (isAuthenticated) {
-      setIsTrendingMoviesLoading(true);
-      axios
-        .get(`${BASE}/api/movies`, {
-          params: {
-            sort_by: "updated_on:desc",
-            page: 1,
-            page_size: 20,
-          },
-        })
-        .then((response) => {
-          setTrendingMovies(response.data.movies);
-          setIsTrendingMoviesLoading(false);
-        })
-        .catch((error) => {
-          console.error("Error fetching trending movies:", error);
-          setIsTrendingMoviesLoading(false);
-        });
-    }
-  }, [isAuthenticated, BASE]);
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      setIsTrendingTvLoading(true);
-      axios
-        .get(`${BASE}/api/tvshows`, {
-          params: {
-            sort_by: "updated_on:desc",
-            page: 1,
-            page_size: 20,
-          },
-        })
-        .then((response) => {
-          setTrendingTv(response.data.tv_shows);
-          setIsTrendingTvLoading(false);
-        })
-        .catch((error) => {
-          console.error("Error fetching trending TV shows:", error);
-          setIsTrendingTvLoading(false);
-        });
-    }
-  }, [isAuthenticated, BASE]);
+    setIsTrendingTvLoading(true);
+    axios
+      .get(`${BASE}/api/tvshows`, {
+        params: {
+          sort_by: "updated_on:desc",
+          page: 1,
+          page_size: 20,
+        },
+      })
+      .then((response) => {
+        setTrendingTv(response.data.tv_shows);
+        setIsTrendingTvLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching trending TV shows:", error);
+        setIsTrendingTvLoading(false);
+      });
+  }, [BASE]);
 
   return (
     <div>

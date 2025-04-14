@@ -101,3 +101,4 @@ const Pagination = ({ currentPage, total, limit, onPageChange, pagesNum }) => {
 };
 
 export default Pagination;
+

@@ -4,56 +4,16 @@ import { PiTelegramLogo } from "react-icons/pi";
 import axios from "axios";
 import { Button } from "@nextui-org/button";
 import Spinner from "./svg/Spinner";
-import { db } from "../firebase";
-import { doc, setDoc, getDoc } from "firebase/firestore";
-import { v4 as uuidv4 } from "uuid";
-import { getAuth } from "firebase/auth";
 import { useLocation } from "react-router-dom";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const TelegramButton = ({ movieData }) => {
   const USERNAME = import.meta.env.VITE_TG_USERNAME;
   const API_URL = import.meta.env.VITE_API_URL;
   const API_KEY = import.meta.env.VITE_API_KEY;
-  const TOKEN_SYSTEM = import.meta.env.VITE_TOKEN_SYSTEM;
 
   const [shortenedUrls, setShortenedUrls] = useState({});
   const [loading, setLoading] = useState({});
-  const auth = getAuth();
-  const userId = auth.currentUser?.uid;
   const location = useLocation();
-  const fullUrl = window.location.href;
-  const url = new URL(fullUrl);
-  const domain = url.origin;
-
-  const generateToken = () => uuidv4();
-
-  const verifyTokenTimeStamp = async (userId) => {
-    try {
-      const docSnap = await getDoc(doc(db, "tokens", userId));
-
-      if (docSnap.exists()) {
-        const now = new Date();
-        const { expiresAt } = docSnap.data();
-
-        if (expiresAt) {
-          if (new Date(expiresAt) > now) return true;
-          toast.warning("Token expired, generating a new one...");
-          // console.log("Token is invalid or expired.");
-        } else {
-          toast.info("Token expired, generating a new one...");
-          // console.log("Token has no expiration date.");
-        }
-      } else {
-        toast.info("No token found, generating a new one...");
-        // console.log("No token found for user.");
-      }
-    } catch (error) {
-      console.error("Error verifying token:", error);
-    }
-    return false;
-  };
 
   const shortenUrl = async (url) => {
     try {
@@ -72,17 +32,7 @@ const TelegramButton = ({ movieData }) => {
     let shortUrl = originalUrl;
 
     try {
-      if (TOKEN_SYSTEM === "true") {
-        if (!(await verifyTokenTimeStamp(userId))) {
-          const token = generateToken();
-          await setDoc(doc(db, "tokens", userId), { token });
-          const tokenUrl = `${domain}/token/${token}`;
-          shortUrl = await shortenUrl(tokenUrl);
-        }
-      } else {
-        shortUrl = await shortenUrl(originalUrl);
-      }
-
+      shortUrl = await shortenUrl(originalUrl);
       setShortenedUrls((prev) => ({ ...prev, [originalUrl]: shortUrl }));
     } catch (error) {
       console.error("Error processing URL:", error);

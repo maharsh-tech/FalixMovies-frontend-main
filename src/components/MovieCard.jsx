@@ -67,6 +67,7 @@ const MovieCard = ({ movie }) => {
         </div>
       )}
 
+
       {movie.languages ? (
         <div className="flex items-center gap-1 absolute bottom-16 right-3 bg-primaryBtn text-bgColor py-1 px-3 rounded-full font-extrabold text-[0.6rem] sm:text-xs">
           <p>

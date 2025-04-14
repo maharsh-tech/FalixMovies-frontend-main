@@ -7,11 +7,10 @@ export default function Footer() {
 
 
   const location = useLocation();
-  const isLoginPage = location.pathname === "/login";
 
   return (
     <>
-      {!isLoginPage && (
+
         <section className="relative pt-10 border-t-2 border-btnColor xxl:container m-auto">
           {/* TOP OF FOOTER */}
           <div className="flex flex-col items-start justify-between w-11/12 gap-6 m-auto md:flex-row ">
@@ -111,7 +110,7 @@ export default function Footer() {
             </div>
           </div>
         </section>
-      )}
+
     </>
   );
 }
