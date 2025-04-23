@@ -44,16 +44,25 @@ const DownloadButton = ({ movieData, btnType }) => {
   }, [selectedEpisode, episodes]);
 
   const shortenUrl = async (url) => {
-    try {
-      const { data } = await axios.get(API_URL, {
-        params: { api: API_KEY, url, format: "json" },
-      });
-      return data.shortenedUrl || url;
-    } catch (error) {
-      console.error("Error shortening URL:", error);
-      return url;
-    }
-  };
+  try {
+    // Flexible structure for various APIs
+    const response = await axios.get(API_URL, {
+      params: {
+        key: API_KEY,
+        link: url, // Adjust this depending on your API (link/url/etc.)
+      },
+    });
+
+    const data = response.data;
+
+    // Adjust this based on expected field in your API response
+    return data?.shortenedUrl || data?.short || data?.url || url;
+  } catch (error) {
+    console.error("Error shortening URL:", error);
+    return url;
+  }
+};
+
 
   const generateUrl = (id, name) => {
     const downloadUrl = `${BASE}/dl/${id}/${encodeURIComponent(name)}`;
