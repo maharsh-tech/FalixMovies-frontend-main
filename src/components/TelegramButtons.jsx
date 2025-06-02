@@ -19,11 +19,12 @@ const TelegramButton = ({ movieData }) => {
   try {
     // Flexible structure for various APIs
     const response = await axios.get(API_URL, {
-      params: {
-        key: API_KEY,
-        link: url, // Adjust this depending on your API (link/url/etc.)
-      },
-    });
+    params: {
+      api: API_KEY,   // ✅ Correct key name
+      url: url,       // ✅ Correct param for URL
+      format: "json", // ✅ Optional but good to include for clarity
+    },
+  });
 
     const data = response.data;
 
