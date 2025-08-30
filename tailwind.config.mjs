@@ -28,7 +28,7 @@ export default {
       colors: {
         primaryTextColor: "#F8FAFC",            // Ultra-light text
         secondaryTextColor: "#A9B8D0",          // Muted blue-gray text
-        primaryBtn: "#6E66FF",                  // Vivid indigo (button primary)
+    primaryBtn: "#4db2ff",                  // Aqua blue for button primary
         primaryBtnHower: "#324DBC",             // Rich blue (button hover)
         bgColor: "#28243D",                     // Lush indigo/dark violet background
         bgColorSecondary: "#38304B",            // Slightly lighter indigo for cards
