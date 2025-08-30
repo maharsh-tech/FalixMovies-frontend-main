@@ -110,7 +110,7 @@ export default function Nav() {
   return (
     <>
       
-        <div className="fixed flex items-center justify-between gap-3 z-20 bg-bgColor/60 backdrop-blur-md top-0 left-0 right-0 py-4 px-5 md:px-10  text-white">
+  <div className="fixed flex items-center justify-between gap-3 z-20 backdrop-blur-md top-0 left-0 right-0 py-4 px-5 md:px-10 text-white" style={{backgroundColor: '#1d1d1d'}}>
           <Link
             to="/"
             className="hidden  items-center gap-2 uppercase text-otherColor font-extrabold text-2xl md:flex"
