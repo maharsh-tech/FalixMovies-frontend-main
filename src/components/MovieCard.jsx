@@ -23,7 +23,7 @@ const MovieCard = ({ movie }) => {
   };
 
   return (
-  <div className="relative" style={{background: '#232323'}}>
+  <div className="relative">
       <Link
         to={
           movie.media_type === "movie"
