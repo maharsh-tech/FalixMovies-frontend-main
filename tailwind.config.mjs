@@ -33,7 +33,7 @@ export default {
         bgColor: "#28243D",                     // Lush indigo/dark violet background
         bgColorSecondary: "#38304B",            // Slightly lighter indigo for cards
   btnColor: "#363538",                    // Updated to dark gray for backgrounds
-        otherColor: "#36FFF7",                  // Aqua accent (active, highlights)
+        otherColor: "#4db2ff",                  // Aqua accent (active, highlights)
         accent: "#FF5CAA",                      // Pink accent (alerts, links)
         glass: "rgba(255,255,255,0.08)",        // For glass effect overlays
       },
