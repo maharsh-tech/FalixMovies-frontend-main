@@ -28,7 +28,7 @@ export default {
       colors: {
         primaryTextColor: "#F8FAFC",            // Ultra-light text
         secondaryTextColor: "#A9B8D0",          // Muted blue-gray text
-  primaryBtn: "linear-gradient(90deg, #283593 0%, #512da8 100%)", // Indigo gradient for button primary
+        primaryBtn: "#6E66FF",                  // Vivid indigo (button primary)
         primaryBtnHower: "#324DBC",             // Rich blue (button hover)
         bgColor: "#28243D",                     // Lush indigo/dark violet background
         bgColorSecondary: "#38304B",            // Slightly lighter indigo for cards
