@@ -32,7 +32,7 @@ export default {
         primaryBtnHower: "#324DBC",             // Rich blue (button hover)
         bgColor: "#28243D",                     // Lush indigo/dark violet background
         bgColorSecondary: "#38304B",            // Slightly lighter indigo for cards
-        btnColor: "#FFAC5F",                    // Modern orange (for ghost/secondary btn)
+  btnColor: "#363538",                    // Updated to dark gray for backgrounds
         otherColor: "#36FFF7",                  // Aqua accent (active, highlights)
         accent: "#FF5CAA",                      // Pink accent (alerts, links)
         glass: "rgba(255,255,255,0.08)",        // For glass effect overlays
