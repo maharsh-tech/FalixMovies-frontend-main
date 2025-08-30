@@ -224,7 +224,7 @@ export default function Nav() {
                 setQuery(e.target.value);
               }}
               placeholder="Search ... "
-              className="py-3 px-10 outline-0 text-sm bg-btnColor/70 rounded-md w-full sm:text-base"
+              className="py-3 px-10 outline-0 text-sm bg-white text-black rounded-md w-full sm:text-base"
             />
             <FiSearch className="absolute right-5 text-secondaryTextColor" />
 
