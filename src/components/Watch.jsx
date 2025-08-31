@@ -142,6 +142,10 @@ export default function WatchTrailer(props) {
               }}
               className="sm:max-w-4xl sm:max-h-[70vh] w-full h-[40vh] md:h-[60vh]"
             />
+            <div className="mt-4 flex items-center justify-center">
+              <span className="text-yellow-400 text-lg mr-2">⚠️</span>
+              <span className="text-sm text-red-400 font-semibold">If Facing Audio Issues?<br />Use VLC Media Player for best playback compatibility.</span>
+            </div>
           </motion.div>
         </motion.div>
       )}
