@@ -129,7 +129,19 @@ export default function WatchTrailer(props) {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="w-full max-w-4xl rounded-lg overflow-hidden shadow-lg relative"
           >
-            <div ref={playerRef} id="player" style={{width: '100%', height: '100%'}} />
+            <div
+              ref={playerRef}
+              id="player"
+              style={{
+                width: '100%',
+                height: '100%',
+                maxWidth: '100vw',
+                maxHeight: '60vh',
+                borderRadius: '16px',
+                background: '#181818',
+              }}
+              className="sm:max-w-4xl sm:max-h-[70vh] w-full h-[40vh] md:h-[60vh]"
+            />
           </motion.div>
         </motion.div>
       )}
