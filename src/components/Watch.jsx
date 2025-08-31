@@ -91,7 +91,12 @@ export default function WatchTrailer(props) {
         container: playerRef.current,
         screenshot: true,
         video: {
-          url: sources[0]?.src || "",
+          quality: sources.map((srcObj) => ({
+            name: srcObj.size ? `${srcObj.size}p` : "Auto",
+            url: srcObj.src,
+            type: srcObj.type || "mp4",
+          })),
+          defaultQuality: 0,
           pic: poster,
           type: "auto",
         },
