@@ -28,8 +28,11 @@ body {
 /* Portrait mode */
 @media (orientation: portrait) {
   #player {
-    transform: rotate(90deg) scale(1.75);
-    transform-origin: center center;
+    transform: none;
+    width: 100vw;
+    height: 40vh;
+    max-width: 100vw;
+    max-height: 40vh;
   }
 }
 /* Landscape mode */
