@@ -1,7 +1,7 @@
 import { AiOutlineClose } from "react-icons/ai";
 import { motion, AnimatePresence } from "framer-motion";
 import DPlayer from "dplayer";
-import "dplayer/dist/DPlayer.min.css";
+// import "dplayer/dist/DPlayer.min.css"; // Removed to fix Vite build error. Add manually if needed.
 import { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
