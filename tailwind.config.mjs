@@ -9,7 +9,6 @@ export default {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    // --- Screen Sizes: Keeping your original values ---
     screens: {
       xs: "400px",
       sm: "480px",
@@ -25,45 +24,23 @@ export default {
     extend: {
       fontFamily: {
         Anton: ["Anton", ...defaultTheme.fontFamily.sans],
-        // Suggestion: Anton for headings, Inter or Roboto for body text (if imported)
-        // sans: ["Inter", ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        // --- Custom Modern Dark Theme (Deep Navy Blue & Cyan Accent) ---
-        
-        // Main Colors
-        primaryTeal: "#00BCD4",       // Vibrant Cyan/Teal (Primary Call-to-Action)
-        darkTeal: "#0097A7",          // Darker Teal for Hover
-        
-        // Background Colors
-        bgColor: "#101625",                // Main Background: Deep Navy Blue (Sleek Look)
-        bgColorSecondary: "#1F2937",       // Secondary Sections/Cards: Dark Slate Blue
-        
-        // Text Colors
-        primaryTextColor: "#FFFFFF",       // White text (High contrast)
-        secondaryTextColor: "#9CA3AF",     // Muted/Greyish text
-        
-        // Button & Accent Colors
-        primaryBtn: "#00BCD4",             // Button Background: Vibrant Teal
-        primaryBtnHover: "#0097A7",        // Button Hover: Dark Teal
-        primaryBtnGlow: "rgba(0, 188, 212, 0.6)", // Teal Glow
-        
-        // Other Theme Keys
-        btnColor: "#101625",               // Button Text Color (Dark Blue/Black for contrast on Teal button)
-        btnGlow: "rgba(0, 188, 212, 0.8)",  // Stronger Teal Glow
-        otherColor: "#00BCD4",             // General Teal Accent
-        accent: "#00BCD4",                 // General Teal Accent
-        accentGlow: "rgba(0, 188, 212, 0.7)", 
-        glass: "rgba(255, 255, 255, 0.08)", // Light Glass effect
+        primaryTextColor: "#F8FAFC",            // Ultra-light text
+        secondaryTextColor: "#A9B8D0",          // Muted blue-gray text
+    primaryBtn: "#4db2ff",                  // Aqua blue for button primary
+        primaryBtnHower: "#324DBC",             // Rich blue (button hover)
+        bgColor: "#28243D",                     // Lush indigo/dark violet background
+        bgColorSecondary: "#38304B",            // Slightly lighter indigo for cards
+  btnColor: "#363538",                    // Updated to dark gray for backgrounds
+        otherColor: "#4db2ff",                  // Aqua accent (active, highlights)
+        accent: "#FF5CAA",                      // Pink accent (alerts, links)
+        glass: "rgba(255,255,255,0.08)",        // For glass effect overlays
       },
-      // --- Box Shadow: ORIGINAL Values Restored ---
       boxShadow: {
-        // Keeping your original neon which is similar to the new primaryTeal
-        glass: "0 8px 32px 0 rgba(80,105,255,0.15)",
-        primary: "0 8px 32px 0 rgba(110,102,255,0.35)",
-        neon: "0 0 8px #36FFF7, 0 0 16px #36FFF7, 0 0 32px #36FFF7", 
+        glass: "0 4px 24px 0 rgba(80,105,255,0.11)",
+        primary: "0 8px 24px 0 rgba(110,102,255,0.32)",
       },
-      // --- End of Box Shadow ---
       aspectRatio: {
         "9/13": "9/13",
       },
@@ -82,24 +59,8 @@ export default {
         "9xl": "12rem",
       },
       backgroundImage: {
-        // ग्रेडिएंट्स को Deep Blue और Cyan के अनुरूप बदला गया
-        'gradient-radial': 'radial-gradient(ellipse at center, #00BCD4 0%, #101625 100%)',
-        'gradient-glass': 'linear-gradient(135deg, rgba(255,255,255,0.12), rgba(0,0,0,0.25))',
-        'gradient-animated': 'linear-gradient(270deg, #00BCD4, #0097A7, #101625)',
-      },
-      animation: {
-        "gradient-shift": "gradientShift 8s ease infinite",
-      },
-      keyframes: {
-        gradientShift: {
-          "0%, 100%": { "background-position": "0% 50%" },
-          "50%": { "background-position": "100% 50%" },
-        },
-      },
-      transitionProperty: {
-        'height': 'height',
-        'spacing': 'margin, padding',
-        'colors': 'background-color, border-color, color, fill, stroke',
+        'gradient-radial': 'radial-gradient(ellipse at center, #36FFF7 0%, #6E66FF 100%)',
+        'gradient-glass': 'linear-gradient(135deg, rgba(255,255,255,0.06), rgba(174,197,255,0.13))'
       },
     },
   },
