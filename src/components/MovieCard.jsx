@@ -23,7 +23,7 @@ const MovieCard = ({ movie }) => {
   };
 
   return (
-  <div className="relative">
+    <div className="relative">
       <Link
         to={
           movie.media_type === "movie"

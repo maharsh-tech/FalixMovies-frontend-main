@@ -110,7 +110,7 @@ export default function Nav() {
   return (
     <>
       
-  <div className="fixed flex items-center justify-between gap-3 z-20 backdrop-blur-md top-0 left-0 right-0 py-4 px-5 md:px-10 text-white" style={{backgroundColor: '#1d1d1d'}}>
+        <div className="fixed flex items-center justify-between gap-3 z-20 bg-bgColor/60 backdrop-blur-md top-0 left-0 right-0 py-4 px-5 md:px-10  text-white">
           <Link
             to="/"
             className="hidden  items-center gap-2 uppercase text-otherColor font-extrabold text-2xl md:flex"
@@ -224,7 +224,7 @@ export default function Nav() {
                 setQuery(e.target.value);
               }}
               placeholder="Search ... "
-              className="py-3 px-10 outline-0 text-sm bg-white text-black rounded-md w-full sm:text-base"
+              className="py-3 px-10 outline-0 text-sm bg-btnColor/70 rounded-md w-full sm:text-base"
             />
             <FiSearch className="absolute right-5 text-secondaryTextColor" />
 

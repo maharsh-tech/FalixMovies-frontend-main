@@ -1,7 +1,7 @@
 import { AiOutlineClose } from "react-icons/ai";
 import { motion, AnimatePresence } from "framer-motion";
-import DPlayer from "dplayer";
-// import "dplayer/dist/DPlayer.min.css"; // Removed to fix Vite build error. Add manually if needed.
+import Plyr from "plyr-react";
+import "plyr-react/plyr.css";
 import { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
@@ -13,7 +13,6 @@ export default function WatchTrailer(props) {
   const BASE = import.meta.env.VITE_BASE_URL;
 
   const playerRef = useRef(null);
-  const dplayerInstance = useRef(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -82,6 +81,7 @@ export default function WatchTrailer(props) {
     }
   };
 
+<<<<<<< HEAD
   useEffect(() => {
     if (isModalOpen && playerRef.current) {
       if (dplayerInstance.current) {
@@ -104,6 +104,29 @@ export default function WatchTrailer(props) {
       }
     };
   }, [isModalOpen, sources, poster]);
+=======
+  const plyrProps = {
+    source: {
+      type: "video",
+      sources: sources,
+    },
+    options: {
+      poster: poster,
+      settings: ["captions", "quality", "speed"],
+      controls: [
+        "play-large",
+        "play",
+        "progress",
+        "current-time",
+        "mute",
+        "volume",
+        "captions",
+        "settings",
+        "fullscreen",
+      ],
+    },
+  };
+>>>>>>> upstream/main
 
   return (
     <AnimatePresence>
@@ -127,6 +150,7 @@ export default function WatchTrailer(props) {
             animate={{ scale: 1 }}
             exit={{ scale: 0.9 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
+<<<<<<< HEAD
             className="w-full max-w-4xl rounded-lg overflow-hidden shadow-lg relative flex flex-col items-center"
           >
             <div
@@ -148,6 +172,11 @@ export default function WatchTrailer(props) {
                 <span className="text-sm text-red-400 font-semibold">If Facing Audio Issues? Use VLC Media Player for best playback compatibility.</span>
               </div>
             )}
+=======
+            className="w-full max-w-4xl rounded-lg overflow-hidden shadow-lg relative"
+          >
+            <Plyr ref={playerRef} {...plyrProps} id="player" />
+>>>>>>> upstream/main
           </motion.div>
         </motion.div>
       )}
