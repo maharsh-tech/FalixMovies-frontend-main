@@ -81,30 +81,6 @@ export default function WatchTrailer(props) {
     }
   };
 
-<<<<<<< HEAD
-  useEffect(() => {
-    if (isModalOpen && playerRef.current) {
-      if (dplayerInstance.current) {
-        dplayerInstance.current.destroy();
-      }
-      dplayerInstance.current = new DPlayer({
-        container: playerRef.current,
-        screenshot: true,
-        video: {
-          url: sources[0]?.src || "",
-          pic: poster,
-          type: "auto",
-        },
-      });
-    }
-    return () => {
-      if (dplayerInstance.current) {
-        dplayerInstance.current.destroy();
-        dplayerInstance.current = null;
-      }
-    };
-  }, [isModalOpen, sources, poster]);
-=======
   const plyrProps = {
     source: {
       type: "video",
@@ -126,7 +102,6 @@ export default function WatchTrailer(props) {
       ],
     },
   };
->>>>>>> upstream/main
 
   return (
     <AnimatePresence>
@@ -150,33 +125,9 @@ export default function WatchTrailer(props) {
             animate={{ scale: 1 }}
             exit={{ scale: 0.9 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-<<<<<<< HEAD
-            className="w-full max-w-4xl rounded-lg overflow-hidden shadow-lg relative flex flex-col items-center"
-          >
-            <div
-              ref={playerRef}
-              id="player"
-              style={{
-                width: '100%',
-                height: '100%',
-                maxWidth: '100vw',
-                maxHeight: '60vh',
-                borderRadius: '16px',
-                background: '#181818',
-              }}
-              className="sm:max-w-4xl sm:max-h-[70vh] w-full h-[40vh] md:h-[60vh]"
-            />
-            {isModalOpen && (
-              <div className="mt-4 flex items-center justify-center">
-                <span className="text-yellow-400 text-lg mr-2">⚠️</span>
-                <span className="text-sm text-red-400 font-semibold">If Facing Audio Issues? Use VLC Media Player for best playback compatibility.</span>
-              </div>
-            )}
-=======
             className="w-full max-w-4xl rounded-lg overflow-hidden shadow-lg relative"
           >
             <Plyr ref={playerRef} {...plyrProps} id="player" />
->>>>>>> upstream/main
           </motion.div>
         </motion.div>
       )}
