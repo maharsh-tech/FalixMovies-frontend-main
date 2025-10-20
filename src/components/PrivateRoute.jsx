@@ -13,7 +13,7 @@ const PrivateRoute = ({ element, ...rest }) => {
         <Spinner size="lg" labelColor="warning" label="Loading..." color="warning" />
       </div>
     );
-  }
+  }ī
 
 
   return isAuthenticated ? (
