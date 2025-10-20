@@ -6,19 +6,19 @@ import Series from "./pages/Series";
 import SimilarMov from "./pages/SimilarMov";
 import SimilarSeries from "./pages/SimilarSeries";
 import SearResults from "./pages/SearchResults";
-// import Token from "./pages/Token";
+import Token from "./pages/Token";
 import NotFoundPage from "./pages/NotFound";
-// import Login from "./pages/Login";
+import Login from "./pages/Login";
 
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
-// import PrivateRoute from "./components/PrivateRoute";
+import PrivateRoute from "./components/PrivateRoute";
 
-// import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider } from "./context/AuthContext";
 
 import ReactGa from "react-ga";
 import { useEffect } from "react";
-// import { ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 
