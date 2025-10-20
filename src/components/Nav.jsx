@@ -1,4 +1,4 @@
-// import Cookies from "universal-cookie";
+import Cookies from "universal-cookie";
 import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
@@ -11,7 +11,7 @@ import { BiHomeAlt2, BiSolidMovie, BiStar } from "react-icons/bi";
 
 import { BsTv } from "react-icons/bs";
 import posterPlaceholder from "../assets/images/poster-placeholder.png";
-// import UserInfoBtn from "./Logout";
+import UserInfoBtn from "./Logout";
 
 export default function Nav() {
   const BASE = import.meta.env.VITE_BASE_URL; // Base Url for backend
@@ -39,7 +39,7 @@ export default function Nav() {
     }
   }, [location.pathname]);
 
-  // const isLoginPage = location.pathname === "/login"; 
+  const isLoginPage = location.pathname === "/login"; 
 
   // Query Data Fetcher
   try {
