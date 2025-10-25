@@ -11,7 +11,7 @@ import { BiHomeAlt2, BiSolidMovie, BiStar } from "react-icons/bi";
 
 import { BsTv } from "react-icons/bs";
 import posterPlaceholder from "../assets/images/poster-placeholder.png";
-// import UserInfoBtn from "./Logout";
+import UserInfoBtn from "./Logout";
 
 export default function Nav() {
   const BASE = import.meta.env.VITE_BASE_URL; // Base Url for backend
