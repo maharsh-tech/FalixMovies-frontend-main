@@ -65,6 +65,12 @@ const DownloadButton = ({ movieData, btnType }) => {
 };
 
 
+  // const generateUrl = (id, name) => {
+  //   const downloadUrl = `${BASE}/dl/${id}/${encodeURIComponent(name)}`;
+  //   if (btnType === "Download") return downloadUrl;
+  //   return `intent:${downloadUrl}#Intent;type=video/x-matroska;action=android.intent.action.VIEW;end;`;
+  // };
+
   const generateUrl = (id, name) => {
     const downloadUrl = `${BASE}/dl/${id}/${encodeURIComponent(name)}`;
     if (btnType === "Download") return downloadUrl;
