@@ -321,10 +321,8 @@ export default function Nav() {
               </div>
             )}
           </form>
-          {<UserInfoBtn /> }
-
+          <UserInfoBtn />
         </div>
-
     </>
   );
 }

@@ -29,12 +29,11 @@ function App() {
   }, []);
 
   return (
-
-    <BrowserRouter>
-      <Nav />
-      <div className="p-3 md:p-10">
-
-        <Routes>
+    <AuthProvider>
+      <BrowserRouter>
+        <Nav />
+        <div className="p-3 md:p-10">
+          <Routes>
           <Route path="/" element={<Home />} />
           <Route
             path="mov/:movieID"
@@ -73,6 +72,7 @@ function App() {
       </div>
       <Footer />
     </BrowserRouter>
+    </AuthProvider>
   );
 }
 
