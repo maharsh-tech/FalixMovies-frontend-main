@@ -1,4 +1,4 @@
-const FIREBASE_API_KEY = 'AIzaSyANjO1fSuivhjh3nCSP5OPa4l-RdxL8epg'; // Replace with your actual Firebase API key
+const FIREBASE_API_KEY = 'AIzaSyA4inaonKdvYTrbJ0_eu7BxCVh6jyYxCyg'; // Replace with your actual Firebase API key
 const CAPTCHA_SECRET_KEY = '6LcusvArAAAAADHFrI5SPEDSuIJ9I4WEwLA_2Ry0'; // Replace with your actual CAPTCHA secret key
 
 addEventListener('fetch', event => {
