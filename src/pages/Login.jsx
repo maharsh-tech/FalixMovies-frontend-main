@@ -9,7 +9,7 @@ import { Button } from "@nextui-org/button";
 import { Card, CardBody } from "@nextui-org/card";
 import { Spinner } from "@nextui-org/spinner";
 
-import SignInwithGoogle from "../components/signInWithGoogle";
+import SignInwithGoogle from "../components/signInWIthGoogle";
 
 import {
   createUserWithEmailAndPassword,
