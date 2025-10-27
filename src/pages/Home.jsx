@@ -6,8 +6,6 @@ import HomeSections from "../components/HomeSections";
 import SEO from "../components/SEO";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Alert } from "@nextui-org/alert";
-import { IoWarningOutline } from "react-icons/io5";
 
 export default function Home() {
   const BASE = import.meta.env.VITE_BASE_URL; // Base Url for backend
@@ -98,19 +96,11 @@ export default function Home() {
       
       {/* Ad Warning Banner */}
       <div className="mt-20 mb-4 px-4 md:px-8">
-        <Alert 
-          variant="bordered"
-          className="bg-bgColor/60 backdrop-blur-md border-otherColor"
-        >
-          <IoWarningOutline className="text-xl text-otherColor" />
-          <div className="flex flex-col gap-1">
-            <h5 className="text-sm font-medium text-otherColor">Advertisement Notice</h5>
-            <p className="text-xs text-secondaryTextColor">
-              This site uses ads to support server costs. Please consider disabling ad blockers to support us.
-              We ensure all ads are safe and non-intrusive.
-            </p>
-          </div>
-        </Alert>
+        <div className="p-4 bg-bgColor/60 backdrop-blur-md border border-otherColor rounded-lg">
+          <p className="text-sm text-secondaryTextColor text-center">
+            This site uses ads to support server costs. Please consider disabling ad blockers to support us.
+          </p>
+        </div>
       </div>
 
       {/* Main Content */}
