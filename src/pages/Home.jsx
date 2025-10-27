@@ -6,6 +6,8 @@ import HomeSections from "../components/HomeSections";
 import SEO from "../components/SEO";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Alert } from "@nextui-org/alert";
+import { IoWarningOutline } from "react-icons/io5";
 
 export default function Home() {
   const BASE = import.meta.env.VITE_BASE_URL; // Base Url for backend
@@ -90,37 +92,62 @@ export default function Home() {
         description={`Discover a world of entertainment where every show, movie, and exclusive content takes you on a journey beyond the screen. ${SITENAME} offers endless options for every mood, helping you relax, escape, and imagine more. Stream your favorites, dream big, and repeat the experience, only with ${SITENAME}.`}
         name={SITENAME}
         type="text/html"
-        keywords="watch movies online, watch hd movies, watch full movies, streaming movies online, free streaming movie, watch movies free, watch hd movies online, watch series online, watch hd series free, free tv series, free movies online, tv online, tv links, tv links movies, free tv shows, watch tv shows online, watch tv shows online free, free hd movies, New Movie Releases, Top Movies of the Year, Watch Movies Online, Streaming Services, Movie Reviews, Upcoming Films, Best Movie Scenes, Classic Movies, HD Movie Streaming, Film Trailers, Action Movies, Drama Films, Comedy Movies, Sci-Fi Films, Horror Movie Picks, Family-Friendly Movies, Award-Winning Films, Movie Recommendations, Cinematic Experiences, Behind-the-Scenes, Director Spotlights, Actor Interviews, Film Festivals, Cult Classics, Top Box Office Hits, Celebrity News, Movie Soundtracks, Oscar-Winning Movies, Movie Trivia, Exclusive Film Content, Best Cinematography, Must-Watch Movies, Film Industry News, Filmmaking Tips, Top Movie Blogs, Latest Movie Gossip, Interactive Movie Quizzes, Red Carpet Moments, IMDb Ratings, Movie Fan Communities, fmovies, fmovies.to, fmovies to, fmovies is, fmovie, free movies, online movie, movie online, free movies online, watch movies online free, free hd movies, watch movies online"
+        keywords="watch movies online, watch hd movies, watch full movies, streaming movies online, free streaming movie, watch movies free, watch hd movies online, watch series online, watch hd series free, free tv series, free movies online, tv online, tv links, tv links movies, free tv shows, watch tv shows online, watch tv shows online free, free hd movies"
         link={`https://${SITENAME}.com`}
       />
-
-      {/* HEADER - Hero and boxoffice */}
-      <div className="col-span-1 lg:col-span-2">
-        <HeroSlider
-          movieData={heroPopularMovies}
-          isMovieDataLoading={isHeroLoading}
-          dataType="heroPopularMovies"
-          sliderTypePrev="slideHeroTrendingMovies-prev"
-          sliderTypeNext="slideHeroTrendingMovies-next"
-        />
+      
+      {/* Ad Warning Banner */}
+      <div className="mt-20 mb-4 px-4 md:px-8">
+        <Alert 
+          variant="bordered"
+          className="bg-bgColor/60 backdrop-blur-md border-otherColor"
+        >
+          <IoWarningOutline className="text-xl text-otherColor" />
+          <div className="flex flex-col gap-1">
+            <h5 className="text-sm font-medium text-otherColor">Advertisement Notice</h5>
+            <p className="text-xs text-secondaryTextColor">
+              This site uses ads to support server costs. Please consider disabling ad blockers to support us.
+              We ensure all ads are safe and non-intrusive.
+            </p>
+          </div>
+        </Alert>
       </div>
-      {/* Home Announcements */}
-      {/* Trending Movies Section */}
-      <HomeSections
-        movieData={trendingMovies}
-        isMovieDataLoading={isTrendingMoviesLoading}
-        sectionTitle="Latest Movies"
-        sectionSeeMoreButtonLink="/Movies"
-        dataType="latestMovies"
-      />
-      {/* Trending TV SHOWS Section */}
-      <HomeSections
-        movieData={trendingTv}
-        isMovieDataLoading={isTrendingTvLoading}
-        sectionTitle="Latest Series"
-        sectionSeeMoreButtonLink="/Series"
-        dataType="latestTv"
-      />
+
+      {/* Main Content */}
+      <div className="space-y-8">
+        {/* Hero Section */}
+        <div className="col-span-1 lg:col-span-2">
+          <HeroSlider
+            movieData={heroPopularMovies}
+            isMovieDataLoading={isHeroLoading}
+            dataType="heroPopularMovies"
+            sliderTypePrev="slideHeroTrendingMovies-prev"
+            sliderTypeNext="slideHeroTrendingMovies-next"
+          />
+        </div>
+
+        {/* Featured Movies Section */}
+        <div className="mt-8">
+          <HomeSections
+            movieData={trendingMovies}
+            isMovieDataLoading={isTrendingMoviesLoading}
+            sectionTitle="Latest Movies"
+            sectionSeeMoreButtonLink="/Movies"
+            dataType="latestMovies"
+          />
+        </div>
+
+        {/* Featured TV Shows Section */}
+        <div className="mt-8">
+          <HomeSections
+            movieData={trendingTv}
+            isMovieDataLoading={isTrendingTvLoading}
+            sectionTitle="Latest Series"
+            sectionSeeMoreButtonLink="/Series"
+            dataType="latestTv"
+          />
+        </div>
+      </div>
     </div>
   );
 }
