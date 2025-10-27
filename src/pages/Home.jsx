@@ -96,8 +96,9 @@ export default function Home() {
       
       {/* Ad Warning Banner */}
       <div className="mt-20 mb-4 px-4 md:px-8">
-        <div className="p-4 bg-bgColor/60 backdrop-blur-md border border-otherColor rounded-lg">
-          <p className="text-sm text-secondaryTextColor text-center">
+        <div className="w-full md:max-w-2xl mx-auto p-3 bg-bgColor/60 backdrop-blur-md border border-otherColor rounded-lg">
+          <h2 className="text-center text-otherColor font-semibold mb-1">⚠️ Ads Enabled ⚠️</h2>
+          <p className="text-xs sm:text-sm text-secondaryTextColor text-center">
             This site uses ads to support server costs. Please consider disabling ad blockers to support us.
           </p>
         </div>
