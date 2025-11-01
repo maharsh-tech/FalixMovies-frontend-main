@@ -99,7 +99,7 @@ export default function Login() {
       setIsLoading(false); // Stop loading after login attempt completes
     }
   };
-
+ 
   const handleRegister = async (e) => {
     e.preventDefault();
     setError("");
