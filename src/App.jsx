@@ -9,6 +9,7 @@ import SearResults from "./pages/SearchResults";
 import Token from "./pages/Token";
 import NotFoundPage from "./pages/NotFound";
 import Login from "./pages/Login";
+import Tutorial from "./pages/Tutorial";
 
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
@@ -50,6 +51,10 @@ function App() {
           <Route
             path="/Series"
             element={<Series />}
+          />
+          <Route
+            path="/tutorial"
+            element={<Tutorial />}
           />
           <Route
             path="*"
