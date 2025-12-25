@@ -8,7 +8,7 @@ import "react-lazy-load-image-component/src/effects/black-and-white.css";
 import { FiSearch } from "react-icons/fi";
 import { VscClose } from "react-icons/vsc";
 import { BiHomeAlt2, BiSolidMovie, BiStar } from "react-icons/bi";
-
+import { MdOndemandVideo } from "react-icons/md";
 import { BsTv } from "react-icons/bs";
 import posterPlaceholder from "../assets/images/poster-placeholder.png";
 import UserInfoBtn from "./Logout";
@@ -124,11 +124,12 @@ export default function Nav() {
                 { icon: BiHomeAlt2, name: "Home" },
                 { icon: BiSolidMovie, name: "Movies" },
                 { icon: BsTv, name: "Series" },
+                { icon: MdOndemandVideo, name: "Tutorial" },
               ].map((navItem, index) => {
                 return (
                   <Link
                     key={index}
-                    to={navItem.name === "Home" ? "/" : navItem.name}
+                    to={navItem.name === "Home" ? "/" : "/" + navItem.name.toLowerCase()}
                     className={
                       navStatus === navItem.name
                         ? "flex flex-col items-center transition-all duration-300 ease-in-out text-otherColor scale-105"
@@ -174,11 +175,12 @@ export default function Nav() {
                     { icon: BiHomeAlt2, name: "Home" },
                     { icon: BiSolidMovie, name: "Movies" },
                     { icon: BsTv, name: "Series" },
+                    { icon: MdOndemandVideo, name: "Tutorial" },
                   ].map((navItem, index) => {
                     return (
                       <Link
                         key={index}
-                        to={navItem.name === "Home" ? "/" : navItem.name}
+                        to={navItem.name === "Home" ? "/" : "/" + navItem.name.toLowerCase()}
                         className={
                           navStatus === navItem.name
                             ? "flex flex-col items-start p-3 transition-all duration-300 ease-in-out text-otherColor scale-105"

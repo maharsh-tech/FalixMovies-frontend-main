@@ -38,7 +38,7 @@ export default function Tutorial() {
                   <iframe
                     title="Android Tutorial"
                     className="absolute top-0 left-0 w-full h-full"
-                    src="https://www.youtube.com/embed/3fumBcKC6RE"
+                    src="https://short.icu/iAMkKOvGX"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
@@ -54,7 +54,7 @@ export default function Tutorial() {
                   <iframe
                     title="Desktop Tutorial"
                     className="absolute top-0 left-0 w-full h-full"
-                    src="https://www.youtube.com/embed/2Vv-BfVoq4g"
+                    src="https://short.icu/iAMkKOvGX"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
