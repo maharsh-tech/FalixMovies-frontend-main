@@ -21,9 +21,12 @@ export default function Tutorial() {
       />
 
       <div className="space-y-6">
-        <div className="max-w-6xl mx-auto px-4 md:px-0">
+        <div
+          className="max-w-6xl mx-auto px-4 md:px-0"
+          style={{ color: "rgb(77 178 255 / var(--tw-bg-opacity))" }}
+        >
           <h1 className="text-2xl font-semibold mb-2">Tutorials</h1>
-          <p className="text-sm text-secondaryTextColor mb-4">
+          <p className="text-sm mb-4">
             Follow these short guides for Android and Desktop usage.
           </p>
 
