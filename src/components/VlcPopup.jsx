@@ -8,10 +8,9 @@ import {
 } from "@nextui-org/modal";
 import { Button } from "@nextui-org/button";
 import { FcVlc } from "react-icons/fc";
-import { FaPlay, FaCheckCircle, FaAndroid, FaDesktop, FaApple, FaExclamationTriangle } from "react-icons/fa";
-import { MdHighQuality, MdSubtitles, MdWarning } from "react-icons/md";
+import { FaAndroid, FaDesktop, FaApple, FaExclamationTriangle, FaCheckCircle } from "react-icons/fa";
+import { MdHighQuality, MdSubtitles } from "react-icons/md";
 import { BiTime } from "react-icons/bi";
-import { IoClose } from "react-icons/io5";
 
 const VlcPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,7 +48,7 @@ const VlcPopup = () => {
     {
       icon: <MdHighQuality className="text-2xl text-otherColor" />,
       title: "HD Streaming",
-      desc: "Stream directly in VLC without downloading",
+      desc: "Stream directly without downloading",
     },
     {
       icon: <MdSubtitles className="text-2xl text-otherColor" />,
@@ -68,7 +67,7 @@ const VlcPopup = () => {
     {
       icon: <MdHighQuality className="text-2xl text-otherColor" />,
       title: "4K Quality Playback",
-      desc: "Stream in original quality without compression",
+      desc: "Stream in original quality",
     },
     {
       icon: <MdSubtitles className="text-2xl text-otherColor" />,
@@ -78,7 +77,7 @@ const VlcPopup = () => {
     {
       icon: <BiTime className="text-2xl text-otherColor" />,
       title: "Resume Playback",
-      desc: "Continue watching from where you left off",
+      desc: "Continue from where you left off",
     },
   ];
 
@@ -151,7 +150,7 @@ const VlcPopup = () => {
                     Use an Android Device
                   </h4>
                   <p className="text-xs text-secondaryTextColor mt-0.5">
-                    Full streaming support with VLC or MX Player
+                    Full streaming support with external player
                   </p>
                 </div>
               </div>
@@ -189,10 +188,10 @@ const VlcPopup = () => {
               </div>
               <div>
                 <h3 className="text-xl font-bold text-primaryTextColor">
-                  Android User?
+                  Playback Recommendation
                 </h3>
                 <p className="text-sm text-secondaryTextColor font-normal">
-                  Use VLC for the best experience
+                  For the best streaming experience
                 </p>
               </div>
             </div>
@@ -204,10 +203,8 @@ const VlcPopup = () => {
               <div className="flex items-start gap-3">
                 <FcVlc className="text-2xl mt-0.5 flex-shrink-0" />
                 <p className="text-primaryTextColor text-sm leading-relaxed">
-                  Watch <span className="text-otherColor font-semibold">Movies</span> and{" "}
-                  <span className="text-accent font-semibold">Series</span> directly using{" "}
-                  <span className="font-bold text-orange-400">VLC Player</span> for smooth, 
-                  high-quality streaming on your phone!
+                  For smooth playback of movies and series, we recommend using an external player like{" "}
+                  <span className="font-semibold">VLC</span>.
                 </p>
               </div>
             </div>
@@ -234,22 +231,6 @@ const VlcPopup = () => {
                 </div>
               ))}
             </div>
-
-            {/* Download Link */}
-            <div className="mt-4 p-3 bg-bgColor rounded-xl border border-glass">
-              <p className="text-xs text-secondaryTextColor mb-2">
-                Don't have VLC? Get it free:
-              </p>
-              <a
-                href="https://play.google.com/store/apps/details?id=org.videolan.vlc"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors text-sm font-medium"
-              >
-                <FcVlc className="text-lg" />
-                Download VLC from Play Store
-              </a>
-            </div>
           </ModalBody>
 
           <ModalFooter className="pt-0">
@@ -257,7 +238,7 @@ const VlcPopup = () => {
               onClick={handleClose}
               className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl py-6"
             >
-              Got it, let's watch!
+              Got it!
             </Button>
           </ModalFooter>
         </ModalContent>
@@ -282,10 +263,10 @@ const VlcPopup = () => {
             </div>
             <div>
               <h3 className="text-xl font-bold text-primaryTextColor">
-                Welcome, PC User!
+                Playback Recommendation
               </h3>
               <p className="text-sm text-secondaryTextColor font-normal">
-                Use VLC for the best viewing experience
+                For the best viewing experience
               </p>
             </div>
           </div>
@@ -297,10 +278,8 @@ const VlcPopup = () => {
             <div className="flex items-start gap-3">
               <FcVlc className="text-2xl mt-0.5 flex-shrink-0" />
               <p className="text-primaryTextColor text-sm leading-relaxed">
-                For seamless playback of <span className="text-otherColor font-semibold">Movies</span> and{" "}
-                <span className="text-accent font-semibold">Series</span>, we recommend{" "}
-                <span className="font-bold text-orange-400">VLC Media Player</span>. It provides 
-                the best compatibility and streaming quality.
+                For seamless playback of movies and series, we recommend using an external player like{" "}
+                <span className="font-semibold">VLC Media Player</span>. It provides the best compatibility and streaming quality.
               </p>
             </div>
           </div>
@@ -327,23 +306,6 @@ const VlcPopup = () => {
               </div>
             ))}
           </div>
-
-          {/* Download Link */}
-          <div className="mt-4 p-3 bg-bgColor rounded-xl border border-glass">
-            <p className="text-xs text-secondaryTextColor mb-2">
-              Don't have VLC Player?
-            </p>
-            <a
-              href="https://www.videolan.org/vlc/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-otherColor hover:text-primaryBtn transition-colors text-sm font-medium"
-            >
-              <FcVlc className="text-lg" />
-              Download VLC Player (Free)
-              <span className="text-xs text-secondaryTextColor">→ videolan.org</span>
-            </a>
-          </div>
         </ModalBody>
 
         <ModalFooter className="pt-0">
@@ -351,7 +313,7 @@ const VlcPopup = () => {
             onClick={handleClose}
             className="w-full bg-primaryBtn hover:bg-primaryBtnHower text-white font-semibold rounded-xl py-6"
           >
-            Got it, let's watch!
+            Got it!
           </Button>
         </ModalFooter>
       </ModalContent>

@@ -5,7 +5,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/black-and-white.css";
 import { PiStarFill } from "react-icons/pi";
 
-import { BsPlayFill } from "react-icons/bs";
+import { BsPlayFill, BsPinFill } from "react-icons/bs";
 import posterPlaceholder from "../assets/images/poster-placeholder.png";
 
 const MovieCard = ({ movie }) => {
@@ -54,6 +54,13 @@ const MovieCard = ({ movie }) => {
           </div>
         </div>
       </div>
+
+      {/* Pin Icon for pinned items */}
+      {movie.isPinned && (
+        <div className="absolute top-5 right-3 bg-primaryBtn text-white p-1.5 rounded-full text-xs">
+          <BsPinFill />
+        </div>
+      )}
 
       {movie.rating ? (
         <div className="flex items-center gap-1 absolute top-5 left-3 bg-bgColorSecondary text-yellow-300 py-1 px-3 rounded-full font-extrabold text-[0.6rem] sm:text-xs">

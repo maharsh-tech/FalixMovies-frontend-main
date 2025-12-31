@@ -1,9 +1,8 @@
 // src/pages/Home.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import HeroSlider from "../components/HomeHero";
 import HomeSections from "../components/HomeSections";
-import PinnedSection from "../components/PinnedSection";
 import SEO from "../components/SEO";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -20,7 +19,6 @@ export default function Home() {
   const [isHeroLoading, setIsHeroLoading] = useState(true);
   const [isTrendingMoviesLoading, setIsTrendingMoviesLoading] = useState(true);
   const [isTrendingTvLoading, setIsTrendingTvLoading] = useState(true);
-  const [isPinnedLoading, setIsPinnedLoading] = useState(true);
 
   useEffect(() => {
     setIsHeroLoading(true);
@@ -86,18 +84,49 @@ export default function Home() {
 
   // Fetch pinned media
   useEffect(() => {
-    setIsPinnedLoading(true);
     axios
       .get(`${BASE}/api/pinned`)
       .then((response) => {
         setPinnedMedia(response.data);
-        setIsPinnedLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching pinned media:", error);
-        setIsPinnedLoading(false);
       });
   }, [BASE]);
+
+  // Merge pinned movies at the start of trending movies
+  const moviesWithPinned = useMemo(() => {
+    const pinnedMovies = pinnedMedia
+      .filter((item) => item.media_type === "movie")
+      .map((item) => ({ ...item, isPinned: true }));
+    
+    // Get pinned movie IDs to filter duplicates
+    const pinnedIds = new Set(pinnedMovies.map((m) => m.tmdb_id));
+    
+    // Filter out pinned movies from trending to avoid duplicates
+    const filteredTrending = trendingMovies.filter(
+      (m) => !pinnedIds.has(m.tmdb_id)
+    );
+    
+    return [...pinnedMovies, ...filteredTrending];
+  }, [pinnedMedia, trendingMovies]);
+
+  // Merge pinned TV shows at the start of trending TV
+  const tvWithPinned = useMemo(() => {
+    const pinnedTv = pinnedMedia
+      .filter((item) => item.media_type === "tv")
+      .map((item) => ({ ...item, isPinned: true }));
+    
+    // Get pinned TV IDs to filter duplicates
+    const pinnedIds = new Set(pinnedTv.map((t) => t.tmdb_id));
+    
+    // Filter out pinned TV from trending to avoid duplicates
+    const filteredTrending = trendingTv.filter(
+      (t) => !pinnedIds.has(t.tmdb_id)
+    );
+    
+    return [...pinnedTv, ...filteredTrending];
+  }, [pinnedMedia, trendingTv]);
 
   return (
     <div>
@@ -112,16 +141,6 @@ export default function Home() {
         link={`https://${SITENAME}.com`}
       />
       
-      {/* Ad Warning Banner
-      <div className="mt-20 mb-1 px-4 md:px-8">
-        <div className="w-full md:max-w-2xl mx-auto py-1.5 px-2 bg-bgColor/60 backdrop-blur-md border border-otherColor rounded-lg">
-          <h2 className="text-center text-otherColor font-semibold mb-0.5">⚠️ Ads Enabled ⚠️</h2>
-          <p className="text-xs sm:text-sm text-secondaryTextColor text-center">
-            This site uses ads to support server costs. Please consider disabling ad blockers to support us.
-          </p>
-        </div>
-      </div> */}
-
       {/* Main Content */}
       <div className="space-y-4">
         {/* Hero Section */}
@@ -135,16 +154,10 @@ export default function Home() {
           />
         </div>
 
-        {/* Pinned by Owner Section */}
-        <PinnedSection
-          pinnedData={pinnedMedia}
-          isPinnedLoading={isPinnedLoading}
-        />
-
-        {/* Featured Movies Section */}
+        {/* Featured Movies Section (with pinned at start) */}
         <div className="mt-8">
           <HomeSections
-            movieData={trendingMovies}
+            movieData={moviesWithPinned}
             isMovieDataLoading={isTrendingMoviesLoading}
             sectionTitle="Latest Movies"
             sectionSeeMoreButtonLink="/Movies"
@@ -152,10 +165,10 @@ export default function Home() {
           />
         </div>
 
-        {/* Featured TV Shows Section */}
+        {/* Featured TV Shows Section (with pinned at start) */}
         <div className="mt-8">
           <HomeSections
-            movieData={trendingTv}
+            movieData={tvWithPinned}
             isMovieDataLoading={isTrendingTvLoading}
             sectionTitle="Latest Series"
             sectionSeeMoreButtonLink="/Series"
