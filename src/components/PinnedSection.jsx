@@ -13,9 +13,9 @@ export default function PinnedSection({ pinnedData, isPinnedLoading }) {
     <>
       {/* Title */}
       <div className="mt-[2.5rem] flex items-center flex-wrap gap-3 text-primaryTextColor pb-[1.5rem] md:mt-[5rem]">
-        <div className="pl-[1rem] border-l-2 border-accent">
+        <div className="pl-[1rem] border-l-2 border-primaryBtn">
           <p className="text-[0.8rem] uppercase font-bold sm:text-[1rem] flex items-center gap-2">
-            <BsPin className="text-accent" />
+            <BsPin className="text-primaryBtn" />
             Pinned by Owner
           </p>
         </div>
