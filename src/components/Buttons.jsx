@@ -95,7 +95,7 @@ const DownloadButton = ({ movieData, btnType }) => {
         isLoading={loading[q.quality]}
         spinner={<Spinner />}
       >
-        {q.quality}
+        {q.quality}{q.size ? ` - ${q.size}` : ""}
       </Button>
     ));
 
@@ -126,7 +126,7 @@ const DownloadButton = ({ movieData, btnType }) => {
         className="w-40 mb-2"
         onChange={(e) => setSelectedEpisode(e.target.value)}
         value={selectedEpisode}
-        disabled={!selectedSeason}
+        isDisabled={!selectedSeason}
       >
         {episodes
           .sort((a, b) => a.episode_number - b.episode_number)
@@ -144,11 +144,11 @@ const DownloadButton = ({ movieData, btnType }) => {
         className="w-40 mb-2"
         onChange={(e) => setSelectedQuality(e.target.value)}
         value={selectedQuality}
-        disabled={!selectedEpisode}
+        isDisabled={!selectedEpisode}
       >
         {qualities?.map((q) => (
           <SelectItem key={q.quality} value={q.quality}>
-            {q.quality}
+            {q.quality}{q.size ? ` - ${q.size}` : ""}
           </SelectItem>
         ))}
       </Select>
@@ -159,7 +159,7 @@ const DownloadButton = ({ movieData, btnType }) => {
         }}
         size="sm"
         className="bg-primaryBtn rounded-full"
-        disabled={!selectedQuality}
+        isDisabled={!selectedQuality}
         isLoading={loading[selectedQuality]}
         spinner={<Spinner />}
       >
