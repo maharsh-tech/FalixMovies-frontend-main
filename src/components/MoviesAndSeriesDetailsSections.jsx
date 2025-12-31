@@ -19,6 +19,7 @@ import { LuLanguages } from "react-icons/lu";
 import TelegramButton from "./TelegramButtons";
 import DownloadButton from "./Buttons";
 import { MdOutlineHighQuality } from "react-icons/md";
+import { FcVlc } from "react-icons/fc";
 
 export default function MoviesAndSeriesDetailsSections(props) {
   const [isWatchMoviePopupOpen, setIsWatchMoviePopupOpen] = useState(false);
@@ -154,6 +155,10 @@ export default function MoviesAndSeriesDetailsSections(props) {
                   movieData={props.movieData}
                   btnType="MX Player"
                 />
+              </div>
+              <div className="flex items-center gap-2 mt-3 text-orange-400 text-xs sm:text-sm">
+                <FcVlc className="text-lg sm:text-xl" />
+                <span>If you experience any audio/video issues, use VLC Player</span>
               </div>
             </div>
           </div>

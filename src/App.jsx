@@ -14,6 +14,7 @@ import Tutorial from "./pages/Tutorial";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import PrivateRoute from "./components/PrivateRoute";
+import VlcPopup from "./components/VlcPopup";
 
 import { AuthProvider } from "./context/AuthContext";
 
@@ -33,6 +34,7 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <Nav />
+        <VlcPopup />
         <div className="p-3 md:p-10">
           <Routes>
           <Route path="/" element={<Home />} />
