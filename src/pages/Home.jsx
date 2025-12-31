@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import HeroSlider from "../components/HomeHero";
 import HomeSections from "../components/HomeSections";
+import PinnedSection from "../components/PinnedSection";
 import SEO from "../components/SEO";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,9 +16,11 @@ export default function Home() {
   const [heroPopularMovies, setHeroPopularMovies] = useState([]);
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [trendingTv, setTrendingTv] = useState([]);
+  const [pinnedMedia, setPinnedMedia] = useState([]);
   const [isHeroLoading, setIsHeroLoading] = useState(true);
   const [isTrendingMoviesLoading, setIsTrendingMoviesLoading] = useState(true);
   const [isTrendingTvLoading, setIsTrendingTvLoading] = useState(true);
+  const [isPinnedLoading, setIsPinnedLoading] = useState(true);
 
   useEffect(() => {
     setIsHeroLoading(true);
@@ -81,6 +84,21 @@ export default function Home() {
       });
   }, [BASE]);
 
+  // Fetch pinned media
+  useEffect(() => {
+    setIsPinnedLoading(true);
+    axios
+      .get(`${BASE}/api/pinned`)
+      .then((response) => {
+        setPinnedMedia(response.data);
+        setIsPinnedLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching pinned media:", error);
+        setIsPinnedLoading(false);
+      });
+  }, [BASE]);
+
   return (
     <div>
       <ToastContainer style={{ fontSize: "0.8rem" }} />
@@ -116,6 +134,12 @@ export default function Home() {
             sliderTypeNext="slideHeroTrendingMovies-next"
           />
         </div>
+
+        {/* Pinned by Owner Section */}
+        <PinnedSection
+          pinnedData={pinnedMedia}
+          isPinnedLoading={isPinnedLoading}
+        />
 
         {/* Featured Movies Section */}
         <div className="mt-8">
