@@ -17,7 +17,7 @@ import { BsListStars } from "react-icons/bs";
 import { PiStarFill } from "react-icons/pi";
 import { LuLanguages } from "react-icons/lu";
 import TelegramButton from "./TelegramButtons";
-import DownloadButton from "./Buttons";
+import DownloadButton, { ExternalLinksButton } from "./Buttons";
 import { MdOutlineHighQuality } from "react-icons/md";
 import { FcVlc } from "react-icons/fc";
 
@@ -150,11 +150,12 @@ export default function MoviesAndSeriesDetailsSections(props) {
                   btnType="Download"
                 />
               </div>
-              <div className="mt-3 flex">
+              <div className="mt-3 flex gap-2 flex-wrap">
                 <DownloadButton
                   movieData={props.movieData}
                   btnType="MX Player"
                 />
+                <ExternalLinksButton movieData={props.movieData} />
               </div>
               <div className="flex items-center gap-2 mt-3 text-orange-400 text-xs sm:text-sm">
                 <FcVlc className="text-lg sm:text-xl" />

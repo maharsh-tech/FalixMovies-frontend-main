@@ -212,4 +212,43 @@ const DownloadButton = ({ movieData, btnType }) => {
   );
 };
 
+// External Links Button Component
+const ExternalLinksButton = ({ movieData }) => {
+  const hasExternalLinks = movieData?.external_links && movieData.external_links.length > 0;
+
+  if (!hasExternalLinks) {
+    return null; // Don't render if no external links
+  }
+
+  const handleExternalLinkClick = (url) => {
+    window.open(url, "_blank", "noopener noreferrer");
+  };
+
+  return (
+    <Popover placement="bottom" showArrow={true}>
+      <PopoverTrigger>
+        <button className="flex justify-center items-center gap-2 uppercase text-green-400 max-w-full grow text-xs rounded-full border-2 border-green-400 py-1 px-3 lg:text-sm sm:px-5 sm:max-w-[15rem] sm:py-2">
+          <FaExternalLinkAlt className="text-lg" /> External Links
+        </button>
+      </PopoverTrigger>
+      <PopoverContent className="bg-btnColor">
+        <div className="px-1 py-2 flex gap-1 flex-wrap">
+          {movieData.external_links.map((link, i) => (
+            <Button
+              key={`ext-${i}`}
+              onClick={() => handleExternalLinkClick(link.url)}
+              size="sm"
+              className="bg-green-600 rounded-full flex items-center gap-1"
+            >
+              <FaExternalLinkAlt className="text-xs" />
+              {link.button_name} {link.quality}
+            </Button>
+          ))}
+        </div>
+      </PopoverContent>
+    </Popover>
+  );
+};
+
 export default DownloadButton;
+export { ExternalLinksButton };
