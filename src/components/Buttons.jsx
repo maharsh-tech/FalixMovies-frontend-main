@@ -212,29 +212,151 @@ const DownloadButton = ({ movieData, btnType }) => {
   );
 };
 
-// External Links Button Component - Each link as a separate button
+// Single External Link Button with selectors (like Download button)
+const SingleExternalButton = ({ buttonName, links, movieData }) => {
+  const [selectedSeason, setSelectedSeason] = useState("");
+  const [selectedEpisode, setSelectedEpisode] = useState("");
+  const [selectedLink, setSelectedLink] = useState("");
+
+  // Get unique seasons from the links
+  const seasons = [...new Set(links.filter(l => l.season).map(l => l.season))].sort((a, b) => a - b);
+  
+  // Get episodes for selected season
+  const episodes = selectedSeason 
+    ? [...new Set(links.filter(l => l.season === parseInt(selectedSeason) && l.episode).map(l => l.episode))].sort((a, b) => a - b)
+    : [];
+
+  // Get available links for selected season/episode (or all links if no season/episode)
+  const availableLinks = links.filter(l => {
+    if (seasons.length === 0) return true; // No season info, show all
+    if (!selectedSeason) return false;
+    if (l.season !== parseInt(selectedSeason)) return false;
+    if (episodes.length > 0 && selectedEpisode && l.episode !== parseInt(selectedEpisode)) return false;
+    return true;
+  });
+
+  const handleDownload = () => {
+    const link = availableLinks.find(l => l.id === selectedLink || l.url === selectedLink);
+    if (link) {
+      window.open(link.url, "_blank", "noopener noreferrer");
+    }
+  };
+
+  // For movies or links without season info - direct quality selection
+  const isMovieOrNoSeason = movieData.media_type === "movie" || seasons.length === 0;
+
+  return (
+    <Popover placement="bottom" showArrow={true}>
+      <PopoverTrigger>
+        <button className="flex justify-center items-center gap-2 uppercase text-green-400 max-w-full grow text-xs rounded-full border-2 border-green-400 py-1 px-3 lg:text-sm sm:px-5 sm:max-w-[15rem] sm:py-2 hover:bg-green-400/10 transition-colors">
+          <FaExternalLinkAlt className="text-sm" />
+          {buttonName}
+        </button>
+      </PopoverTrigger>
+      <PopoverContent className="bg-btnColor">
+        <div className="px-1 py-2 flex flex-col gap-2 min-w-[180px]">
+          {!isMovieOrNoSeason && (
+            <>
+              <Select
+                variant="bordered"
+                aria-label="Select season"
+                placeholder="Select season"
+                className="w-full"
+                onChange={(e) => {
+                  setSelectedSeason(e.target.value);
+                  setSelectedEpisode("");
+                  setSelectedLink("");
+                }}
+                value={selectedSeason}
+              >
+                {seasons.map((s) => (
+                  <SelectItem key={s} value={s}>
+                    Season {s}
+                  </SelectItem>
+                ))}
+              </Select>
+              
+              {episodes.length > 0 && (
+                <Select
+                  variant="bordered"
+                  aria-label="Select episode"
+                  placeholder="Select episode"
+                  className="w-full"
+                  onChange={(e) => {
+                    setSelectedEpisode(e.target.value);
+                    setSelectedLink("");
+                  }}
+                  value={selectedEpisode}
+                  isDisabled={!selectedSeason}
+                >
+                  {episodes.map((e) => (
+                    <SelectItem key={e} value={e}>
+                      Episode {e}
+                    </SelectItem>
+                  ))}
+                </Select>
+              )}
+            </>
+          )}
+          
+          {/* Quality/Link Selection */}
+          {(isMovieOrNoSeason || selectedSeason) && availableLinks.length > 0 && (
+            <Select
+              variant="bordered"
+              aria-label="Select quality"
+              placeholder="Select quality"
+              className="w-full"
+              onChange={(e) => setSelectedLink(e.target.value)}
+              value={selectedLink}
+            >
+              {availableLinks.map((l, i) => (
+                <SelectItem key={l.id || i} value={l.id || l.url}>
+                  {l.quality || "Download"}
+                </SelectItem>
+              ))}
+            </Select>
+          )}
+          
+          <Button
+            onClick={handleDownload}
+            size="sm"
+            className="bg-green-600 rounded-full"
+            isDisabled={!selectedLink}
+          >
+            <FaExternalLinkAlt className="text-xs mr-1" />
+            Download
+          </Button>
+        </div>
+      </PopoverContent>
+    </Popover>
+  );
+};
+
+// External Links Button Component - Groups links by button_name
 const ExternalLinksButton = ({ movieData }) => {
   const hasExternalLinks = movieData?.external_links && movieData.external_links.length > 0;
 
   if (!hasExternalLinks) {
-    return null; // Don't render if no external links
+    return null;
   }
 
-  const handleExternalLinkClick = (url) => {
-    window.open(url, "_blank", "noopener noreferrer");
-  };
+  // Group links by button_name
+  const groupedLinks = movieData.external_links.reduce((acc, link) => {
+    const name = link.button_name || "Download";
+    if (!acc[name]) acc[name] = [];
+    acc[name].push(link);
+    return acc;
+  }, {});
 
   return (
     <>
-      {movieData.external_links.map((link, i) => (
-        <button
-          key={`ext-${i}`}
-          onClick={() => handleExternalLinkClick(link.url)}
-          className="flex justify-center items-center gap-2 uppercase text-green-400 max-w-full grow text-xs rounded-full border-2 border-green-400 py-1 px-3 lg:text-sm sm:px-5 sm:max-w-[15rem] sm:py-2 hover:bg-green-400/10 transition-colors"
-        >
-          <FaExternalLinkAlt className="text-sm" />
-          {link.button_name} {link.quality && `(${link.quality})`}
-        </button>
+      {Object.entries(groupedLinks).map(([buttonName, links]) => (
+        <SingleExternalButton
+          key={buttonName}
+          buttonName={buttonName}
+          links={links}
+          movieData={movieData}
+        />
       ))}
     </>
   );
@@ -242,3 +364,4 @@ const ExternalLinksButton = ({ movieData }) => {
 
 export default DownloadButton;
 export { ExternalLinksButton };
+
