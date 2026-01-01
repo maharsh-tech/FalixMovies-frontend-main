@@ -212,7 +212,7 @@ const DownloadButton = ({ movieData, btnType }) => {
   );
 };
 
-// External Links Button Component
+// External Links Button Component - Each link as a separate button
 const ExternalLinksButton = ({ movieData }) => {
   const hasExternalLinks = movieData?.external_links && movieData.external_links.length > 0;
 
@@ -225,28 +225,18 @@ const ExternalLinksButton = ({ movieData }) => {
   };
 
   return (
-    <Popover placement="bottom" showArrow={true}>
-      <PopoverTrigger>
-        <button className="flex justify-center items-center gap-2 uppercase text-green-400 max-w-full grow text-xs rounded-full border-2 border-green-400 py-1 px-3 lg:text-sm sm:px-5 sm:max-w-[15rem] sm:py-2">
-          <FaExternalLinkAlt className="text-lg" /> External Links
+    <>
+      {movieData.external_links.map((link, i) => (
+        <button
+          key={`ext-${i}`}
+          onClick={() => handleExternalLinkClick(link.url)}
+          className="flex justify-center items-center gap-2 uppercase text-green-400 max-w-full grow text-xs rounded-full border-2 border-green-400 py-1 px-3 lg:text-sm sm:px-5 sm:max-w-[15rem] sm:py-2 hover:bg-green-400/10 transition-colors"
+        >
+          <FaExternalLinkAlt className="text-sm" />
+          {link.button_name} {link.quality && `(${link.quality})`}
         </button>
-      </PopoverTrigger>
-      <PopoverContent className="bg-btnColor">
-        <div className="px-1 py-2 flex gap-1 flex-wrap">
-          {movieData.external_links.map((link, i) => (
-            <Button
-              key={`ext-${i}`}
-              onClick={() => handleExternalLinkClick(link.url)}
-              size="sm"
-              className="bg-green-600 rounded-full flex items-center gap-1"
-            >
-              <FaExternalLinkAlt className="text-xs" />
-              {link.button_name} {link.quality}
-            </Button>
-          ))}
-        </div>
-      </PopoverContent>
-    </Popover>
+      ))}
+    </>
   );
 };
 
