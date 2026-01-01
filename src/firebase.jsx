@@ -11,7 +11,7 @@ const firebaseConfig = {
     storageBucket: "falixmovies-auth.firebasestorage.app",
     messagingSenderId: "493579670333",
     appId: "1:493579670333:web:f4e1fd4e4046605fea2b54",
-    measurementId: "G-VBVRR2RJ9E"
+    measurementId: "G-HZ9Z2V4SEE"
   };
 
 // Initialize Firebase

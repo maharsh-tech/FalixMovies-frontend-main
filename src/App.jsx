@@ -25,7 +25,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 
 function App() {
-  ReactGa.initialize("G-VBVRR2RJ9E");
+  ReactGa.initialize("G-HZ9Z2V4SEE");
   useEffect(() => {
     ReactGa.pageview(window.location.pathname + window.location.search);
   }, []);
