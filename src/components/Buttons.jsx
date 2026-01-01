@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Select, SelectItem } from "@nextui-org/select";
 import { Popover, PopoverTrigger, PopoverContent } from "@nextui-org/popover";
 import { Button } from "@nextui-org/button";
-import { FaCloudDownloadAlt, FaPlay } from "react-icons/fa";
+import { FaCloudDownloadAlt, FaPlay, FaExternalLinkAlt } from "react-icons/fa";
 import Spinner from "./svg/Spinner";
 
 const DownloadButton = ({ movieData, btnType }) => {
@@ -85,19 +85,39 @@ const DownloadButton = ({ movieData, btnType }) => {
     window.open(shortUrl, "_blank", "noopener noreferrer");
   };
 
-  const renderMovieButtons = () =>
-    movieData.telegram?.map((q, i) => (
-      <Button
-        key={i}
-        onClick={() => handleButtonClick(q.id, q.name, q.quality)}
-        size="sm"
-        className="bg-primaryBtn rounded-full"
-        isLoading={loading[q.quality]}
-        spinner={<Spinner />}
-      >
-        {q.quality}{q.size ? ` - ${q.size}` : ""}
-      </Button>
-    ));
+  // Handle external link click (direct URL, no shortening)
+  const handleExternalLinkClick = (url) => {
+    window.open(url, "_blank", "noopener noreferrer");
+  };
+
+  const renderMovieButtons = () => (
+    <>
+      {movieData.telegram?.map((q, i) => (
+        <Button
+          key={i}
+          onClick={() => handleButtonClick(q.id, q.name, q.quality)}
+          size="sm"
+          className="bg-primaryBtn rounded-full"
+          isLoading={loading[q.quality]}
+          spinner={<Spinner />}
+        >
+          {q.quality}{q.size ? ` - ${q.size}` : ""}
+        </Button>
+      ))}
+      {/* External Links */}
+      {movieData.external_links?.map((link, i) => (
+        <Button
+          key={`ext-${i}`}
+          onClick={() => handleExternalLinkClick(link.url)}
+          size="sm"
+          className="bg-green-600 rounded-full flex items-center gap-1"
+        >
+          <FaExternalLinkAlt className="text-xs" />
+          {link.button_name} {link.quality}
+        </Button>
+      ))}
+    </>
+  );
 
   const renderShowSelectors = () => (
     <div className="px-1 py-2 flex flex-col gap-2">
